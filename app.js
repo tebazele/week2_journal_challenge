@@ -16,10 +16,11 @@
 
 // first set of functions is feedBirds(), feedMammals(), feedFish()
 
-const animalArray = [
+const allAnimals = [
     {
         name: 'Fred',
-        species: 'ostrich',
+        species: 'swan',
+        emoji: '🦢',
         type: 'bird',
         diet: 'omnivore',
         age: 6,
@@ -28,6 +29,7 @@ const animalArray = [
     {
         name: 'Leonard',
         species: 'lion',
+        emoji: '🦁',
         type: 'mammal',
         diet: 'carnivore',
         age: 12,
@@ -36,6 +38,7 @@ const animalArray = [
     {
         name: 'Perry',
         species: 'porpoise',
+        emoji: '🐬',
         type: 'fish',
         diet: 'carnivore',
         age: 3,
@@ -44,6 +47,7 @@ const animalArray = [
     {
         name: 'Wilma',
         species: 'owl',
+        emoji: '🦉',
         type: 'bird',
         diet: 'carnivore',
         age: 2,
@@ -52,6 +56,7 @@ const animalArray = [
     {
         name: 'Stewart',
         species: 'koala',
+        emoji: '🐨',
         type: 'mammal',
         diet: 'herbivore',
         age: 10,
@@ -60,6 +65,7 @@ const animalArray = [
     {
         name: 'Finnegan',
         species: 'shark',
+        emoji: '🦈',
         type: 'fish',
         diet: 'carnivore',
         age: 17,
@@ -75,8 +81,15 @@ function penTheBirds(animalArray) {
         if (a.type == 'bird') {
             birdPen.push(a)
         }
+
     })
-    return birdPen
+    let template = ''
+    birdPen.forEach(b => {
+        template += `<h1>${b.emoji}</h1>`
+    })
+    let birdElem = document.getElementById('birdPen')
+    birdElem.innerHTML = template
+
 }
 
 function penTheMammals(animalArray) {
@@ -86,7 +99,12 @@ function penTheMammals(animalArray) {
             mammalPen.push(a)
         }
     })
-    return mammalPen
+    let template = ''
+    mammalPen.forEach(m => {
+        template += `<h1>${m.emoji}</h1>`
+    })
+    let mammalElem = document.getElementById('mammalPen')
+    mammalElem.innerHTML = template
 }
 
 function penTheFish(animalArray) {
@@ -96,11 +114,16 @@ function penTheFish(animalArray) {
             fishPen.push(a)
         }
     })
-    return fishPen
+    let template = ''
+    fishPen.forEach(f => {
+        template += `<h1>${f.emoji}</h1>`
+    })
+    let fishElem = document.getElementById('fishPen')
+    fishElem.innerHTML = template
 }
 
 // NOTE Challenge is to refactor these functions and create a reusable function that sorts all the animals into pens
-
+// NOTE One option -- but can we refactor this further?
 function penAnimals(animalArray) {
     let fishPen = []
     let birdPen = []
@@ -114,13 +137,28 @@ function penAnimals(animalArray) {
             mammalPen.push(a)
         }
     })
-    let zoo = createZooObject(animalArray)
-    zoo.fishPen = fishPen;
-    zoo.birdPen = birdPen;
-    zoo.mammalPen = mammalPen;
+    drawAnimals(fishPen)
+    drawAnimals(birdPen)
+    drawAnimals(mammalPen)
 
-    return zoo
+    // let zoo = createZooObject(animalArray)
+    // zoo.fishPen = fishPen;
+    // zoo.birdPen = birdPen;
+    // zoo.mammalPen = mammalPen;
 
+    // return zoo
+
+}
+
+function drawAnimals(arr) {
+    let template = ''
+    let animalType = ''
+    arr.forEach(a => {
+        template += `<h1>${a.emoji}</h1>`
+        animalType = a.type
+    })
+    let animalElem = document.getElementById(`${animalType}Pen`)
+    animalElem.innerHTML = template
 }
 
 function createZooObject(animalArray) {
@@ -165,3 +203,8 @@ function sortAnimal(isIntrovert) {
 }
 
 // we are building a zoo and need to create pens depending on animal type, diet, and isSolitary, we will add a new pen depending on need
+
+// penTheBirds(allAnimals)
+// penTheFish(allAnimals)
+// penTheMammals(allAnimals)
+penAnimals(allAnimals)
