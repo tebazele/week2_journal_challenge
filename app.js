@@ -82,7 +82,6 @@ function penTheBirds() {
 }
 
 
-
 function penTheMammals() {
     let mammalPen = []
     newAnimals.forEach(a => {
@@ -100,7 +99,6 @@ function penTheMammals() {
     let mammalElem = document.getElementById('mammalPen')
     mammalElem.innerHTML = `<h1>${mammalEmojis}</h1>`
 }
-
 
 
 function penTheFish() {
@@ -127,6 +125,7 @@ penTheBirds()
 penTheMammals()
 penTheFish()
 
+
 // STUB Part 2/3
 
 function penTheAnimals(animalType, solitaryPenNumber = 0) {
@@ -137,6 +136,7 @@ function penTheAnimals(animalType, solitaryPenNumber = 0) {
 // penTheAnimals('bird')
 // penTheAnimals('mammal', 1)
 // penTheAnimals('fish', 2)
+
 
 // STUB Part 4
 
@@ -177,7 +177,7 @@ function penTheAnimals4(animalType, solitaryPenNumber = 0) {
 }
 
 function isSolitaryCheck(filteredArray) {
-    // NOTE canLiveTogether will be true is none of the animals are solitary and false if any of the animals need to be isolated
+    // NOTE canLiveTogether will be true if none of the animals are solitary and false if any of the animals need to be isolated
     let canLiveTogether = filteredArray.every(a => a.isSolitary == true)
     return canLiveTogether
 }
@@ -186,18 +186,18 @@ function isSolitaryCheck(filteredArray) {
 // penTheAnimals4('mammal', 1)
 // penTheAnimals4('fish', 2)
 
-// STUB Part 5
+
+
+// STUB Part 6
 function penTheSocialAnimals(animalType) {
     let socialAnimalsByType = filterSocialAnimalsByType(animalType);
     drawAnimals2(socialAnimalsByType, animalType)
-
 }
 
 function penTheSolitaryAnimals() {
     let solitaryAnimalsByType = filterSolitaryAnimals();
     drawAnimals2(solitaryAnimalsByType)
 }
-
 
 function filterSocialAnimalsByType(animalType) {
     // NOTE Use filter to return an array of animals of animalType && isSolitary == false
@@ -232,7 +232,9 @@ function drawAnimals2(animalPenArray, animalType = '') {
 // penTheSocialAnimals('fish')
 // penTheSolitaryAnimals()
 
-// STUB Part 6
+
+
+// STUB Part 7
 function penTheAnimals6() {
     // YOUR CODE HERE
 }
