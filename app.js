@@ -1,22 +1,4 @@
-// array of animals {
-//     name, type, diet, age, isSolitary
-// }
-
-// Goal: split animals into pens based on type and need for solitude
-// bring animals into zoo, sort them, feed them
-
-// Sort by diet
-
-// show sending in multiple arguments so that a function is reusable
-// Show calling a function within another function
-// getting and using a return from a called function
-
-// FeedAnimal calls a sort function that determines what you feed the animal based on the return; hoisting
-
-
-// first set of functions is feedBirds(), feedMammals(), feedFish()
-
-const allAnimals = [
+const newAnimals = [
     {
         name: 'Fred',
         species: 'swan',
@@ -70,141 +52,189 @@ const allAnimals = [
         diet: 'carnivore',
         age: 17,
         isSolitary: true
+    },
+    {
+        name: 'Carrie',
+        species: 'kangaroo',
+        emoji: '🦘',
+        type: 'mammal',
+        diet: 'herbivore',
+        age: 8,
+        isSolitary: false
     }
 ]
 
-// STUB before refactoring, sort the animals
 
-function penTheBirds(animalArray) {
+function penTheBirds() {
     let birdPen = []
-    animalArray.forEach(a => {
+    newAnimals.forEach(a => {
         if (a.type == 'bird') {
             birdPen.push(a)
         }
-
     })
-    let template = ''
-    birdPen.forEach(b => {
-        template += `<h1>${b.emoji}</h1>`
-    })
+    let birdEmojis = '';
+    for (let i = 0; i < birdPen.length; i++) {
+        const bird = birdPen[i];
+        birdEmojis += bird.emoji
+    }
     let birdElem = document.getElementById('birdPen')
-    birdElem.innerHTML = template
-
+    birdElem.innerHTML = `<h1>${birdEmojis}</h1>`
 }
 
-function penTheMammals(animalArray) {
+
+
+function penTheMammals() {
     let mammalPen = []
-    animalArray.forEach(a => {
-        if (a.type == 'mammal') {
+    newAnimals.forEach(a => {
+        if (a.type == 'mammal' && a.isSolitary == true) {
+            document.getElementById('solitaryPen1').innerHTML = `<h1>${a.emoji}</h1>`
+        } else if (a.type == 'mammal' && a.isSolitary == false) {
             mammalPen.push(a)
         }
     })
-    let template = ''
-    mammalPen.forEach(m => {
-        template += `<h1>${m.emoji}</h1>`
-    })
+    let mammalEmojis = '';
+    for (let i = 0; i < mammalPen.length; i++) {
+        const mammal = mammalPen[i];
+        mammalEmojis += mammal.emoji
+    }
     let mammalElem = document.getElementById('mammalPen')
-    mammalElem.innerHTML = template
+    mammalElem.innerHTML = `<h1>${mammalEmojis}</h1>`
 }
 
-function penTheFish(animalArray) {
+
+
+function penTheFish() {
     let fishPen = []
-    animalArray.forEach(a => {
-        if (a.type == 'fish') {
+    newAnimals.forEach(a => {
+        if (a.type == 'fish' && a.isSolitary == true) {
+            document.getElementById('solitaryPen2').innerHTML = `<h1>${a.emoji}</h1>`
+        } else if (a.type == 'fish' && a.isSolitary == false) {
             fishPen.push(a)
         }
     })
-    let template = ''
-    fishPen.forEach(f => {
-        template += `<h1>${f.emoji}</h1>`
-    })
+
+    let fishEmojis = '';
+    for (let i = 0; i < fishPen.length; i++) {
+        const fish = fishPen[i];
+        fishEmojis += fish.emoji
+    }
     let fishElem = document.getElementById('fishPen')
-    fishElem.innerHTML = template
+    fishElem.innerHTML = `<h1>${fishEmojis}</h1>`
 }
 
-// NOTE Challenge is to refactor these functions and create a reusable function that sorts all the animals into pens
-// NOTE One option -- but can we refactor this further?
-function penAnimals(animalArray) {
-    let fishPen = []
-    let birdPen = []
-    let mammalPen = []
-    animalArray.forEach(a => {
-        if (a.type == 'fish') {
-            fishPen.push(a)
-        } else if (a.type == 'bird') {
-            birdPen.push(a)
-        } else {
-            mammalPen.push(a)
-        }
-    })
-    drawAnimals(fishPen)
-    drawAnimals(birdPen)
-    drawAnimals(mammalPen)
+// NOTE comment these function calls out before moving on to Part 2
+penTheBirds()
+penTheMammals()
+penTheFish()
 
-    // let zoo = createZooObject(animalArray)
-    // zoo.fishPen = fishPen;
-    // zoo.birdPen = birdPen;
-    // zoo.mammalPen = mammalPen;
+// STUB Part 2/3
 
-    // return zoo
-
+function penTheAnimals(animalType, solitaryPenNumber = 0) {
+    // YOUR CODE HERE
 }
 
-function drawAnimals(arr) {
-    let template = ''
-    let animalType = ''
-    arr.forEach(a => {
-        template += `<h1>${a.emoji}</h1>`
-        animalType = a.type
-    })
-    let animalElem = document.getElementById(`${animalType}Pen`)
-    animalElem.innerHTML = template
+// NOTE uncomment these function invocations to test your penTheAnimals function
+// penTheAnimals('bird')
+// penTheAnimals('mammal', 1)
+// penTheAnimals('fish', 2)
+
+// STUB Part 4
+
+function penTheAnimals3(animalType, solitaryPenNumber = 0) {
+    // COPY & PASTE YOUR CODE FROM THE TOP OF YOUR penTheAnimals FUNCTION
+
+    // NOTE send in the animalPen array and the animalType as arguments
+    drawAnimals(animalPen, animalType)
 }
 
-function createZooObject(animalArray) {
-    let zoo = {}
-    animalArray.forEach(a => {
-        zoo[`${a.type}Pen`] = []
-    })
-    return zoo
+function drawAnimals(animalPenArray, animalType) {
+    // YOUR CODE HERE
 }
 
+// penTheAnimals3('bird')
+// penTheAnimals3('mammal', 1)
+// penTheAnimals3('fish', 2)
 
-function sortAnimals(animalArray) {
-    animalArray.forEach()
-}
-// called on button click
-function feedBirds() {
-    // decrease 
-}
+// STUB Part 5
 
-function feedAnimal(animalType) {
-    const ret = getFood()
-
-}
-
-function getFood(animalType) {
-    let foodType;
-    if (animalType == 'carnivore') {
-        // sort into pen
-        foodType = 'meat'
+function penTheAnimals4(animalType, solitaryPenNumber = 0) {
+    let animalsByType = newAnimals.filter(a => a.type == animalType)
+    let animalPen = []
+    const canLiveTogether = isSolitaryCheck(animalsByType)
+    // NOTE we can use the return from our isSolitaryCheck function in our if/else statement
+    if (canLiveTogether) {
+        drawAnimals(animalsByType, animalType)
     } else {
-        foodType = 'plants'
-    }
-    sortAnimal()
-
-
-}
-
-function sortAnimal(isIntrovert) {
-    if (isIntrovert) {
-
+        animalsByType.forEach(a => {
+            if (a.isSolitary == true) {
+                document.getElementById(`solitaryPen${solitaryPenNumber}`).innerHTML = `<h1>${a.emoji}</h1>`
+            } else {
+                animalPen.push(a)
+            }
+        })
+        drawAnimals(animalPen, animalType)
     }
 }
 
-// we are building a zoo and need to create pens depending on animal type, diet, and isSolitary, we will add a new pen depending on need
+function isSolitaryCheck(filteredArray) {
+    // NOTE canLiveTogether will be true is none of the animals are solitary and false if any of the animals need to be isolated
+    let canLiveTogether = filteredArray.every(a => a.isSolitary == true)
+    return canLiveTogether
+}
 
-// penTheBirds(allAnimals)
-// penTheFish(allAnimals)
-// penTheMammals(allAnimals)
-penAnimals(allAnimals)
+// penTheAnimals4('bird')
+// penTheAnimals4('mammal', 1)
+// penTheAnimals4('fish', 2)
+
+// STUB Part 5
+function penTheSocialAnimals(animalType) {
+    let socialAnimalsByType = filterSocialAnimalsByType(animalType);
+    drawAnimals2(socialAnimalsByType, animalType)
+
+}
+
+function penTheSolitaryAnimals() {
+    let solitaryAnimalsByType = filterSolitaryAnimals();
+    drawAnimals2(solitaryAnimalsByType)
+}
+
+
+function filterSocialAnimalsByType(animalType) {
+    // NOTE Use filter to return an array of animals of animalType && isSolitary == false
+    // YOUR CODE HERE
+}
+
+function filterSolitaryAnimals() {
+    // NOTE use filter to return an array of animals where isSolitary == true
+    // YOUR CODE HERE
+
+}
+
+function drawAnimals2(animalPenArray, animalType = '') {
+    if (animalPenArray[0].isSolitary == false) {
+        let animalEmojis = '';
+        for (let i = 0; i < animalPenArray.length; i++) {
+            const animal = animalPenArray[i];
+            animalEmojis += animal.emoji
+        }
+        let animalElem = document.getElementById(`${animalType}Pen`)
+        animalElem.innerHTML = `<h1>${animalEmojis}</h1>`
+    } else {
+        for (let i = 0; i < animalPenArray.length; i++) {
+            const animal = animalPenArray[i];
+            document.getElementById(`solitaryPen${i + 1}`).innerHTML = `<h1>${animal.emoji}</h1>`
+        }
+    }
+}
+
+// penTheSocialAnimals('bird')
+// penTheSocialAnimals('mammal')
+// penTheSocialAnimals('fish')
+// penTheSolitaryAnimals()
+
+// STUB Part 6
+function penTheAnimals6() {
+    // YOUR CODE HERE
+}
+
+// penTheAnimals6()
